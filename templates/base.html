@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+  <title>翻訳アプリ作るンゴ</title>
+  {% block head %}{% endblock %}
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-2" href="/">翻訳アプリ作るンゴ</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" href="https://twitter.com/syoroku06">管理人Twitter</a>
+          <a class="nav-link active" href="http://syo6.space">管理人Blog</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  {% block body %}{% endblock %}
+</main>
+<footer>
+  <p><a class="text-light" aria-current="page" href="/">Home</a></p>
+  <p><a class="text-light" href="https://twitter.com/syoroku06">管理人Twitter</a></p>
+  <p><a class="text-light" href="http://syo6.space">管理人Blog</a></p>
+</footer>
+</body>
+
+<style>
+</style>
+</html>

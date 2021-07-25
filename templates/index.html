@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+<h1 class="app-title">TRANSLATOR</h1>
+<h3 class="app-version">version1.0</h3>
+
+<form action="/translate" method="POST" name='myform'>
+  <div class="radio-container">
+    <label><input class="form-check-input" type="radio" id="auto-onoff" name="auto" value="on" checked>言語を検出させる</label>
+    <label><input class="form-check-input" type="radio" id="auto-onoff" name="auto" value="off">言語を選択する</label>
+  </div>
+  
+  <div class="src-container">
+    <label for="src">入力する言語:</label>
+    <select class="src-lang-select form-select" name="src-lang" id="src">
+      <option value="zh-cn">中国語</option>
+      <option value="hi">ヒンディー語</option>
+      <option value="es">スペイン語</option>
+      <option value="en">英語</option>
+      <option value="ja">日本語</option>
+      <option value="ko">韓国・朝鮮語</option>
+    </select>
+    <textarea class="textarea form-control form-control-lg" type="text" name="japanese" style="height: 200px;" id='textarea' placeholder="Ctrl+Enterで翻訳">{{ last_src_text }}</textarea>
+  </div>
+
+  <div class="dest-container">
+    <label for="dest">出力される言語:</label>
+    <select class="dest-lang-select form-select" name="dest-lang" id="dest" required>
+      <option value="zh-cn">中国語</option>
+      <option value="hi">ヒンディー語</option>
+      <option value="es">スペイン語</option>
+      <option value="en">英語</option>
+      <option value="ja">日本語</option>
+      <option value="ko">韓国・朝鮮語</option>
+    </select>
+    <div class="input-group mb-3">
+      <p type="text" class="p form-control form-control-lg" style="height: 200px;">{{ result }}</p>
+    </div>
+  </div>
+</form>
+<img src="{{ image }}" alt="" style="width: 100%;">
+<h5>{{ text }}</h5>
+<script>
+  t = document.getElementById('src').value = '{{ detect_src_lang }}';
+  t.selected = true;
+
+  t = document.getElementById('dest').value = '{{ select_dest_lang }}'
+  t.selected = true;
+
+  var input_name = document.getElementById("textarea");
+  input_name.addEventListener("change",function(){
+    document.myform.submit();
+  });
+
+  function copy(){
+    var str = '{{ result }}';
+    var listener = function(e){
+      e.clipboardData.setData("text/plain", str);    
+      e.preventDefault();
+      document.removeEventListener("copy", listener);
+    }
+    document.addEventListener("copy", listener);
+    document.execCommand("copy");
+  }
+
+  $(function(){
+    $('#textarea').keydown(function(e){
+      if(event.ctrlKey){
+        if(e.keyCode === 13 && $(this).val()){
+          document.myform.submit();
+          return false;
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

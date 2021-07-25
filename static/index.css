@@ -1,0 +1,26 @@
+.app-title{
+  color: #000000;
+  font-size: 3rem;
+  text-align: center;
+}
+.app-version{
+  color: #000000;
+  text-align: center;
+}
+.app-title, .radio-container, .src-container, .dest-container{
+  padding-top: 30px;
+}
+.src-lang-select{
+  background-color: #6c6ea0;
+  color: #ffffff;
+}
+.dest-lang-select{
+  background-color: #6c6ea0;
+  color: #ffffff;
+}
+.textarea{
+  background-color: #ffffff;
+}
+.p{
+  background-color: #ffffff;
+}
